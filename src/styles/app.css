@@ -103,8 +103,12 @@ a:visited {
 	line-height: 0.98;
 	letter-spacing: -0.015em;
 	margin: 0;
-	max-width: 13ch;
-	text-wrap: balance;
+	/* rem, not ch: ch tracks the variable axes, so the wrap point would move
+	   mid-morph. 47.5rem fits "From git clone" at final axes (748px) while
+	   rejecting "…to" at raw axes (776px) — two lines at every scrub point.
+	   min-height reserves both lines so nothing downstream shifts. */
+	max-width: 47.5rem;
+	min-height: 1.96em;
 }
 
 .hero h1 code {
