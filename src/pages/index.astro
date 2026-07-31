@@ -1,25 +1,40 @@
 ---
-import '../styles/global.css';
-import Hero from '../components/Hero/Hero.astro';
-import Boxes from '../components/Boxes/Boxes.astro';
-import MotionPath from '../components/MotionPath/MotionPath.astro';
-import Physics from '../components/Physics/Physics.astro';
-import ScrollPin from '../components/ScrollPin/ScrollPin.astro';
+// Fonts load upfront (SPEC §2) — standard.css carries wght + wdth + opsz
+// for the Bricolage variable-axis morph.
+import '@fontsource-variable/bricolage-grotesque/standard.css';
+import '@fontsource-variable/public-sans';
+import '@fontsource-variable/jetbrains-mono';
+import '../styles/tokens.css';
+import '../styles/app.css';
+import Shipped from '../components/beats/Shipped.astro';
 ---
 
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro + GSAP</title>
+		<meta
+			name="description"
+			content="An Astro starter with every GSAP plugin registered and Webflow Cloud deployment wired in. From git clone to shipped."
+		/>
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<title>astro-gsap — from git clone to shipped</title>
+		<script is:inline>
+			// The finished design is the no-JS default (§8). Knock it back to
+			// raw before first paint so the scrub can build it — unless the
+			// user prefers reduced motion, who get the final state directly.
+			if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+				document.documentElement.classList.add('raw');
+			}
+		</script>
 	</head>
 	<body>
-		<Hero />
-		<Boxes />
-		<MotionPath />
-		<Physics />
-		<ScrollPin />
+		<div id="stage">
+			<Shipped />
+		</div>
+		<script>
+			import { initTimeline } from '../scripts/timeline.js';
+			initTimeline();
+		</script>
 	</body>
 </html>

@@ -96,3 +96,19 @@
 	--s-72: 4.5rem;
 	--s-112: 7rem;
 }
+
+/* Raw state — applied before first paint by the inline script in index.astro
+   when motion is allowed; the timeline scrubs from here to :root's finals.
+   Colour + axes only (stage A). Keep in sync with RAW_TOKENS in
+   src/scripts/tokens.js. */
+:root.raw {
+	--paper: #ffffff;
+	--ink: #000000;
+	--accent: #0000ee;
+	--visited: #551a8b;
+	--rule: #808080;
+	--signal: #000000;
+	--wght: 200;
+	--wdth: 75;
+	--opsz: 12;
+}
