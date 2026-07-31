@@ -64,6 +64,59 @@
 	initial-value: 0px;
 }
 
+/* Layout tokens (stage B). px only: @property initial-values must be
+   computationally independent (no rem), and GSAP interpolates px cleanly.
+   Raw values collapse the finished layout back to document flow:
+   max-widths blow past any viewport (full bleed), paddings/gaps hit UA
+   zero, and grid minimums exceed the container so every grid stacks. */
+@property --wrap-max {
+	syntax: '<length>';
+	inherits: true;
+	initial-value: 3200px;
+}
+@property --pad-x {
+	syntax: '<length>';
+	inherits: true;
+	initial-value: 0px;
+}
+@property --hero-pad {
+	syntax: '<length>';
+	inherits: true;
+	initial-value: 0px;
+}
+@property --sec-pad {
+	syntax: '<length>';
+	inherits: true;
+	initial-value: 0px;
+}
+@property --col-min {
+	syntax: '<length>';
+	inherits: true;
+	initial-value: 3200px;
+}
+@property --chip-min {
+	syntax: '<length>';
+	inherits: true;
+	initial-value: 3200px;
+}
+@property --measure {
+	syntax: '<length>';
+	inherits: true;
+	initial-value: 3200px;
+}
+@property --lh {
+	syntax: '<number>';
+	inherits: true;
+	initial-value: 1.2;
+}
+/* 0 → 1: how much UI "chrome" exists — button fills/paddings, nav styling,
+   box borders. Fed through color-mix() and calc() so it scrubs. */
+@property --ui {
+	syntax: '<number>';
+	inherits: true;
+	initial-value: 0;
+}
+
 :root {
 	/* Final palette — the raw values, matured */
 	--paper: #f7f5f2;
@@ -80,6 +133,17 @@
 
 	--radius: 8px;
 	--gap: 24px;
+
+	/* Layout — final values */
+	--wrap-max: 1088px;
+	--pad-x: 40px;
+	--hero-pad: 112px;
+	--sec-pad: 72px;
+	--col-min: 288px;
+	--chip-min: 184px;
+	--measure: 544px;
+	--lh: 1.55;
+	--ui: 1;
 
 	/* Type — final faces. Not tweenable; the timeline swaps these at a label. */
 	--font-display: 'Bricolage Grotesque Variable', 'Times New Roman', serif;
@@ -111,4 +175,15 @@
 	--wght: 200;
 	--wdth: 75;
 	--opsz: 12;
+	--radius: 0px;
+	--gap: 0px;
+	--wrap-max: 3200px;
+	--pad-x: 0px;
+	--hero-pad: 0px;
+	--sec-pad: 0px;
+	--col-min: 3200px;
+	--chip-min: 3200px;
+	--measure: 3200px;
+	--lh: 1.2;
+	--ui: 0;
 }
