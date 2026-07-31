@@ -145,10 +145,18 @@
 	--lh: 1.55;
 	--ui: 1;
 
-	/* Type — final faces. Not tweenable; the timeline swaps these at a label. */
+	/* Type — final faces. Not tweenable; the timeline swaps these with a
+	   .set() at the 'type' label. :root.raw resets them to `initial`
+	   (guaranteed-invalid), so var() consumers fall back to genuine UA
+	   defaults — no font-family in effect at all. */
 	--font-display: 'Bricolage Grotesque Variable', 'Times New Roman', serif;
 	--font-body: 'Public Sans Variable', 'Times New Roman', serif;
 	--font-mono: 'JetBrains Mono Variable', 'Courier New', monospace;
+
+	/* Headline cap. Snaps in the same .set() as the fonts: Times/Courier at
+	   112px cannot fit "From git clone" in 760px, so the cap only exists
+	   once Bricolage does. Not registered/tweened on purpose. */
+	--h1-max: 760px;
 
 	/* Scale: 12 / 14 / 16 / 20 / 28 / 44 / 72 / 112. Display only at 72 and 112. */
 	--s-12: 0.75rem;
@@ -186,4 +194,10 @@
 	--measure: 3200px;
 	--lh: 1.2;
 	--ui: 0;
+	/* guaranteed-invalid: font-family: var(--font-*) computes to unset,
+	   i.e. real UA Times / Courier, not an imitation */
+	--font-display: initial;
+	--font-body: initial;
+	--font-mono: initial;
+	--h1-max: 3200px;
 }

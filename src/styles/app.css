@@ -116,18 +116,19 @@ a:visited {
 	line-height: 0.98;
 	letter-spacing: -0.015em;
 	margin: 0;
-	/* rem, not ch: ch tracks the variable axes, so the wrap point would move
-	   mid-morph. 47.5rem fits "From git clone" at final axes (748px) while
-	   rejecting "…to" at raw axes (776px) — two lines at every scrub point.
-	   min-height reserves both lines so nothing downstream shifts.
-	   Deliberately NOT on --measure: the headline is the beat-2 morph star
-	   and its wrap must never move. */
-	max-width: 47.5rem;
+	/* --h1-max is 760px once fonts are swapped: fits "From git clone" at
+	   final axes (748px), rejects "…to" at raw axes (776px) — two lines at
+	   every scrub point after the swap. Raw (Times/Courier) releases the cap
+	   entirely; it snaps in the same .set() as the fonts. min-height
+	   reserves two lines so the hero box height never changes. */
+	max-width: var(--h1-max, 47.5rem);
 	min-height: 1.96em;
 }
 
 .hero h1 code {
-	font-family: var(--font-mono);
+	/* real <code>: falls back to UA monospace (Courier) in the raw state,
+	   which is what 1996 would do */
+	font-family: var(--font-mono, monospace);
 	font-size: 0.82em;
 	font-weight: 500;
 	color: var(--accent);
@@ -276,7 +277,7 @@ a:visited {
 }
 
 .features code {
-	font-family: var(--font-mono);
+	font-family: var(--font-mono, monospace);
 	font-size: 0.88em;
 }
 
