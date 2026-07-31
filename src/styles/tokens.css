@@ -1,0 +1,98 @@
+/* Design tokens — SPEC.md §2.
+   @property initial-value = the RAW (UA default) state.
+   :root = the FINAL (shipped) state, which is the page's default design —
+   if JS fails the page renders finished, and the timeline (session 2)
+   knocks it back to raw before scrubbing forward.
+   Keep in sync with src/scripts/tokens.js when that file lands. */
+
+@property --paper {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: #ffffff;
+}
+@property --ink {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: #000000;
+}
+@property --accent {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: #0000ee;
+}
+@property --visited {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: #551a8b;
+}
+@property --rule {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: #808080;
+}
+@property --signal {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: #e8501f;
+}
+
+/* Variable-font axes for the Bricolage display morph (§2 signature element). */
+@property --wght {
+	syntax: '<number>';
+	inherits: true;
+	initial-value: 200;
+}
+@property --wdth {
+	syntax: '<number>';
+	inherits: true;
+	initial-value: 75;
+}
+@property --opsz {
+	syntax: '<number>';
+	inherits: true;
+	initial-value: 12;
+}
+
+@property --radius {
+	syntax: '<length>';
+	inherits: true;
+	initial-value: 0px;
+}
+@property --gap {
+	syntax: '<length>';
+	inherits: true;
+	initial-value: 0px;
+}
+
+:root {
+	/* Final palette — the raw values, matured */
+	--paper: #f7f5f2;
+	--ink: #141110;
+	--accent: #1b2fd8;
+	--visited: #6b3fa0;
+	--rule: #d6d0c8;
+	--signal: #e8501f; /* used exactly once, in the shipped section */
+
+	/* Final display axes */
+	--wght: 640;
+	--wdth: 100;
+	--opsz: 96;
+
+	--radius: 8px;
+	--gap: 24px;
+
+	/* Type — final faces. Not tweenable; the timeline swaps these at a label. */
+	--font-display: 'Bricolage Grotesque Variable', 'Times New Roman', serif;
+	--font-body: 'Public Sans Variable', 'Times New Roman', serif;
+	--font-mono: 'JetBrains Mono Variable', 'Courier New', monospace;
+
+	/* Scale: 12 / 14 / 16 / 20 / 28 / 44 / 72 / 112. Display only at 72 and 112. */
+	--s-12: 0.75rem;
+	--s-14: 0.875rem;
+	--s-16: 1rem;
+	--s-20: 1.25rem;
+	--s-28: 1.75rem;
+	--s-44: 2.75rem;
+	--s-72: 4.5rem;
+	--s-112: 7rem;
+}

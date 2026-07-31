@@ -1,0 +1,139 @@
+---
+// Beat 6 — Shipped. The real landing page; styled by styles/app.css
+// against the tokens in styles/tokens.css. Static — no GSAP here.
+const repoUrl = 'https://github.com/Webflow-Examples/astro-gsap';
+const cloneCmd = `git clone ${repoUrl}.git`;
+const deployUrl = `https://webflow.com/dashboard/cloud/deploy?repo=${repoUrl}`;
+
+const plugins = [
+	'ScrollTrigger',
+	'ScrollSmoother',
+	'ScrollToPlugin',
+	'Observer',
+	'SplitText',
+	'Draggable',
+	'Flip',
+	'MotionPathPlugin',
+	'MotionPathHelper',
+	'DrawSVGPlugin',
+	'MorphSVGPlugin',
+	'InertiaPlugin',
+	'Physics2DPlugin',
+	'PhysicsPropsPlugin',
+	'CustomEase',
+	'CustomBounce',
+	'CustomWiggle',
+	'ScrambleTextPlugin',
+	'TextPlugin',
+	'PixiPlugin',
+	'EaselPlugin',
+	'CSSRulePlugin',
+	'GSDevTools',
+	'EasePack',
+];
+---
+
+<header class="site-head">
+	<div class="wrap">
+		<a class="wordmark" href="/">astro-gsap</a>
+		<nav class="site-nav" aria-label="Site">
+			<a href={repoUrl}>GitHub</a>
+			<a href="https://gsap.com/cheatsheet/">GSAP cheatsheet</a>
+			<a href="https://docs.astro.build/">Astro docs</a>
+		</nav>
+	</div>
+</header>
+
+<main>
+	<section class="hero">
+		<div class="wrap">
+			<p class="eyebrow">Astro + GSAP + Webflow Cloud</p>
+			<h1>From <code>git clone</code> to shipped.</h1>
+			<p class="lede">
+				A starter with Astro underneath, every GSAP plugin registered, and Webflow Cloud
+				deployment already wired in. Nothing to configure before the fun part.
+			</p>
+			<div class="clone">
+				<code id="clone-cmd">{cloneCmd}</code>
+				<button class="copy" type="button" aria-label="Copy clone command">Copy</button>
+			</div>
+			<div class="cta-row">
+				<a class="btn btn-primary" href={deployUrl}>Deploy to Webflow Cloud</a>
+				<a class="btn btn-ghost" href={repoUrl}>View on GitHub</a>
+			</div>
+		</div>
+	</section>
+
+	<section class="section">
+		<div class="wrap">
+			<div class="features">
+				<div>
+					<h3>Structure first.</h3>
+					<p>
+						Astro gives you the bones — file-based routing, components, zero JS by default.
+					</p>
+				</div>
+				<div>
+					<h3>Motion included.</h3>
+					<p>
+						All of GSAP, imported once in <code>src/lib/gsap.js</code>. Grab what you need and
+						animate.
+					</p>
+				</div>
+				<div>
+					<h3>Deploys in one click.</h3>
+					<p>
+						Push to GitHub, connect Webflow Cloud, done. No adapter config, no build wrangling.
+					</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="section">
+		<div class="wrap">
+			<h2>Every GSAP plugin, wired up and free.</h2>
+			<p>
+				All 24 plugins are registered and ready to import — including the formerly premium Club
+				plugins, now free for everyone thanks to Webflow.
+			</p>
+			<ul class="plugins">
+				{plugins.map((name) => <li>{name}</li>)}
+			</ul>
+		</div>
+	</section>
+
+	<section class="section">
+		<div class="wrap">
+			<h2>Quick start</h2>
+			<p>Three commands between you and a running page.</p>
+			<ol class="steps">
+				<li>{cloneCmd}</li>
+				<li>pnpm install</li>
+				<li>pnpm dev</li>
+			</ol>
+		</div>
+	</section>
+</main>
+
+<footer class="site-foot">
+	<div class="wrap">
+		<p>Built for the Webflow &times; GSAP &times; CodeTV hackathon.</p>
+		<nav aria-label="Footer">
+			<a href={repoUrl}>GitHub</a>
+			<a href="https://gsap.com/docs/">GSAP docs</a>
+			<a href="https://developers.webflow.com/webflow-cloud/bring-your-own-app">Webflow Cloud</a>
+		</nav>
+	</div>
+</footer>
+
+<script>
+	const btn = document.querySelector('.copy');
+	const cmd = document.getElementById('clone-cmd');
+	btn?.addEventListener('click', async () => {
+		if (!cmd?.textContent) return;
+		await navigator.clipboard.writeText(cmd.textContent);
+		btn.textContent = 'Copied';
+		setTimeout(() => (btn.textContent = 'Copy'), 1500);
+	});
+</script>

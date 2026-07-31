@@ -1,0 +1,26 @@
+---
+// Fonts load upfront (SPEC §2) — standard.css carries wght + wdth + opsz
+// for the Bricolage variable-axis morph.
+import '@fontsource-variable/bricolage-grotesque/standard.css';
+import '@fontsource-variable/public-sans';
+import '@fontsource-variable/jetbrains-mono';
+import '../styles/tokens.css';
+import '../styles/app.css';
+import Shipped from '../components/beats/Shipped.astro';
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		<meta
+			name="description"
+			content="An Astro starter with every GSAP plugin registered and Webflow Cloud deployment wired in. From git clone to shipped."
+		/>
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<title>astro-gsap — from git clone to shipped</title>
+	</head>
+	<body>
+		<Shipped />
+	</body>
+</html>
