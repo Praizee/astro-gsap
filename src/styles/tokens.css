@@ -153,10 +153,19 @@
 	--font-body: 'Public Sans Variable', 'Times New Roman', serif;
 	--font-mono: 'JetBrains Mono Variable', 'Courier New', monospace;
 
-	/* Headline cap. Snaps in the same .set() as the fonts: Times/Courier at
-	   112px cannot fit "From git clone" in 760px, so the cap only exists
-	   once Bricolage does. Not registered/tweened on purpose. */
+	/* Headline geometry. All snap with the font swap at the 'type' label —
+	   "the type arrives" is one authored moment. Not registered/tweened.
+	   --h1-max: Times/Courier at 112px cannot fit "From git clone" in
+	   760px, so the cap only exists once Bricolage does.
+	   --h1-size: raw is UA h1 2em; final 7em ≡ 112px (h1 inherits the 16px
+	   body size, so em is stable). Single-unit on purpose: GSAP garbles a
+	   clamp() string, so app.css reapplies the responsive cap via
+	   min(var(--h1-size), max(--s-44, 9vw)).
+	   --hero-min: raw is UA auto (no reserved band); final holds the
+	   two-line box so the axis morph never shifts anything downstream. */
 	--h1-max: 760px;
+	--h1-size: 7em;
+	--hero-min: 1.96em;
 
 	/* Scale: 12 / 14 / 16 / 20 / 28 / 44 / 72 / 112. Display only at 72 and 112. */
 	--s-12: 0.75rem;
@@ -200,4 +209,6 @@
 	--font-body: initial;
 	--font-mono: initial;
 	--h1-max: 3200px;
+	--h1-size: 2em; /* genuine UA h1 size */
+	--hero-min: auto;
 }

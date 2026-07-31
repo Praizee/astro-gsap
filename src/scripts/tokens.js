@@ -30,6 +30,8 @@ export const RAW_FONT_SWAP = {
 	'--font-body': 'initial',
 	'--font-mono': 'initial',
 	'--h1-max': '3200px',
+	'--h1-size': '2em', // genuine UA h1 size
+	'--hero-min': 'auto',
 };
 
 export const FONT_SWAP = {
@@ -37,6 +39,8 @@ export const FONT_SWAP = {
 	'--font-body': "'Public Sans Variable', 'Times New Roman', serif",
 	'--font-mono': "'JetBrains Mono Variable', 'Courier New', monospace",
 	'--h1-max': '760px',
+	'--h1-size': '7em', // ≡ 112px; same unit as raw so GSAP can't garble it
+	'--hero-min': '1.96em',
 };
 
 // Beat 2b — the variable-axis morph (§2 signature element).
